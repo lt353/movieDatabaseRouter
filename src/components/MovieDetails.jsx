@@ -1,24 +1,41 @@
 import React from "react";
 import movieData from "./movieData";
+import { useParams, Link } from "react-router-dom";
 
 // TODO: Import components/hooks from react-router-dom
 
 function MovieDetails() {
-   // TODO: Call useParams() here
+	const { movieId } = useParams();
+	const movie = movieData.find((m) => m.movieId === movieId);
 
-   // TODO: Replace "tt0034583" with the movie ID parameter
-   // find() returns undefined if the movieId cannot be found
-   const movie = movieData.find(m => m.movieId === "tt0034583");
-   
-   return (
-      <>        
-         <h2>{movie.title} ({movie.year})</h2>
-         
-         { /* TODO: Show movie details or "not found" message */ }
+	if (!movie) {
+		return (
+			<>
+				<p>Movie with ID {movieId} not found.</p>
+				<p>
+					<Link to="/">All Movies</Link>
+				</p>
+			</>
+		);
+	}
 
-         { /* TODO: Add Link to "/" */ }
-      </>    
-   );
+	return (
+		<>
+			<h2>
+				{movie.title} ({movie.year})
+			</h2>
+			<p>
+				{movie ? movie.desc : `Movie with ID ${movieId} not found.`}
+				<Link to={`https://www.imdb.com/title/${movie.movieId}/`}>
+					More information
+				</Link>
+			</p>
+			<p>Rated {movie.rating}.</p>
+			<p>
+				<Link to="/">All Movies</Link>
+			</p>
+		</>
+	);
 }
 
 export default MovieDetails;
