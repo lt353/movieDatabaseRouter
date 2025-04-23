@@ -1,13 +1,17 @@
 import React from "react";
+import MovieList from "./MovieList";
+import MovieDetails from "./MovieDetails";
+
+
+// TODO: Import components from react-router-dom
 
 function App() {
   return (
-    <div>
-      <h1>Hello World!</h1>
-      <p>This is a simple template react app.</p>
-      <p>Feel free to modify it as you like.</p>
-      <p>Happy coding!</p>
-    </div>
+    <>
+      <h1>Movie Database</h1>
+
+      {/* TODO: Add routes here */}
+    </>
   );
 }
 
